@@ -1,15 +1,25 @@
 var produtos = require('./Produtos')
-module.exports = class Compras{
-    constructor(getProduto = new produtos()){
-        this.getProduto = getProduto
-    }
-    adicionarCarrinho(){
-        return this.getProduto.listarEstoque()
-    }
-    checarCarrinho(){
+var usuario = require("./Usuario")
 
+module.exports = class Compras{
+    constructor(getProduto = new produtos(), getUsuario = new usuario()){
+        this.getProduto = getProduto
+        this.getUsuario = getUsuario
+        this.item = {}
+        this.itensCheckout = []
     }
-    comprar(){
+
+    adicionarCarrinho(nome, quantidade){
+        this.item = this.getProduto.listarEstoque().find(x => x.nome == nome)
+        this.item.quantidade = quantidade
+        this.itensCheckout.push(this.item)
+    }
+
+    checarCarrinho(){
         
+        return this.itensCheckout
+    }
+
+    comprar(){ 
     }
 }

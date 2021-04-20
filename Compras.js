@@ -3,7 +3,7 @@ module.exports = class Compras{
     constructor(getProduto = new produtos()){
         this.getProduto = getProduto
     }
-    exibir(){
+    adicionarCarrinho(){
         return this.getProduto.listarEstoque()
     }
     checarCarrinho(){

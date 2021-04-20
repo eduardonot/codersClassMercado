@@ -2,10 +2,10 @@ var produtos = require('./Produtos')
 var usuario = require('./Usuario')
 var compras = require('./Compras')
 
-const comprar = new compras
+
 const userAdd = new usuario
 const produtoAdd = new produtos
-
+const comprar = new compras (produtoAdd)
 produtoAdd.cadastrarProdutos('mouse',5, 15.0)
 produtoAdd.cadastrarProdutos('teclado',5, 20.0)
 produtoAdd.cadastrarProdutos('monitor',1, 420.0)
@@ -23,5 +23,4 @@ console.log(produtoAdd.listarEstoqueVazio())
 userAdd.cadastrarUsuario('Eduardo','eduardo_not@hotmail.com',500)
 userAdd.cadastrarUsuario('Thiago','thiagolancer@gmail.com',4500)
 
-console.log(comprar.exibir())
-comprar.exibir()
+

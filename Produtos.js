@@ -4,7 +4,7 @@ module.exports = class Produtos{
         this.listaEstoque = []
     }
     cadastrarProdutos(nome, quantidade, valor){
-        this.listaProdutos = {nome,quantidade,valor}
+        this.listaProdutos = {nome:nome,quantidade:quantidade,valor:valor}
         this.listaEstoque.push(this.listaProdutos)
         return this.listaEstoque
     }

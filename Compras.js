@@ -7,13 +7,16 @@ module.exports = class Compras{
         this.getUsuario = getUsuario
         this.item = {}
         this.itensCheckout = []
+        this.comprador
         this.agregador
     }
 
-    adicionarCarrinho(nome, quantidade){
+    adicionarCarrinho(comprador, nome, quantidade){
         let indexPosition
+        this.comprador = this.getUsuario.usuariosCadastrados().find(x => x.nome == comprador)
         this.item = this.getProduto.listarEstoque().find(x => x.nome == nome)
         this.agregador = {
+            comprador: this.comprador.nome,
             nome: this.item.nome,
             quantidade:quantidade,
             valor:this.item.valor*quantidade
@@ -21,21 +24,36 @@ module.exports = class Compras{
         if(quantidade > this.item.quantidade){
             return
         }
+        // CHECA DUPLICATAS
         for(var i = 0; i < this.itensCheckout.length; i++){
             for(let names of this.itensCheckout){
                 indexPosition = this.itensCheckout.indexOf(names)
-            }
-            if(indexPosition != i){
-                this.itensCheckout.pop()
+                if(names.comprador == comprador && names.nome == nome && indexPosition != i){
+                    this.itensCheckout.pop()
+                }
             }
         }
         this.itensCheckout.push(this.agregador)
-    }
-
-    checarCarrinho(){
         return this.itensCheckout
     }
 
-    comprar(){ 
+    checarCarrinho(user){
+        var userCart = []
+        for(let cart of this.itensCheckout){
+            if(cart.comprador == user){
+                userCart.push(cart)
+            }
+        }
+        return userCart
+    }
+    comprar(user){
+        let valorCompra = 0 
+        let valorDisponivel = this.getUsuario.usuariosCadastrados().find(x => x.nome == user)
+        for(let cart of this.checarCarrinho(user)){
+            valorCompra += cart.valor
+        }
+        if (valorCompra > valorDisponivel.dinheiro){
+            return "Você não tem saldo suficiente para esta compra."
+        }
     }
 }

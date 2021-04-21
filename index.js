@@ -20,7 +20,9 @@ produtoAdd.cadastrarProdutos('pen drive',50, 30.0)
 userAdd.cadastrarUsuario('Eduardo','eduardo_not@hotmail.com',500)
 userAdd.cadastrarUsuario('Thiago','thiagolancer@gmail.com',4500)
 
-comprar.adicionarCarrinho("mouse", 5)
+comprar.adicionarCarrinho("mouse", 6)
 comprar.adicionarCarrinho("mouse", 3)
+comprar.adicionarCarrinho("teclado", 3)
+
 
 console.log(comprar.checarCarrinho())

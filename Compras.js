@@ -49,13 +49,20 @@ module.exports = class Compras{
     comprar(user){
         let valorCompra = 0 
         let usuario = this.getUsuario.usuariosCadastrados().find(x => x.nome == user)
-        for(let cart of this.checarCarrinho(user)){
+        for(var cart of this.checarCarrinho(user)){
             valorCompra += cart.valor
-        }
-        if (valorCompra > usuario.dinheiro){
-            return "Você não tem saldo suficiente para esta compra."
+            if (valorCompra > usuario.dinheiro){
+                return "Você não tem saldo suficiente para esta compra."
+            }
         }
         usuario.dinheiro -= valorCompra
-        return  usuario
+        for(var produtos of this.getProduto.listarEstoque()){
+            for(cart of this.checarCarrinho(user)){    
+                if(produtos.nome == cart.nome){
+                    produtos.quantidade -= cart.quantidade
+                }
+            }   
+        }
+        return  "Compra realizada com sucesso!"
     }
 }

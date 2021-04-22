@@ -36,3 +36,5 @@ console.log(comprar.checarCarrinho("Thiago"))
 console.log(comprar.comprar("Eduardo"))
 // MOSTRAR USUARIOS
 console.log(userAdd.usuariosCadastrados())
+// MOSTRAR ESTOQUE ATUALIZADO
+console.log(produtoAdd.listarEstoque())

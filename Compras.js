@@ -22,7 +22,7 @@ module.exports = class Compras{
             valor:this.item.valor*quantidade
         }
         if(quantidade > this.item.quantidade){
-            return
+            return 
         }
         // CHECA DUPLICATAS
         for(var i = 0; i < this.itensCheckout.length; i++){
@@ -55,7 +55,7 @@ module.exports = class Compras{
         if (valorCompra > usuario.dinheiro){
             return "Você não tem saldo suficiente para esta compra."
         }
-        usuario.dinheiro - valorCompra
+        usuario.dinheiro -= valorCompra
         return  usuario
     }
 }

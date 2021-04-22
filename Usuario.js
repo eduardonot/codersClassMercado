@@ -14,6 +14,6 @@ module.exports = class Usuario{
         return this.userList
     }
     checarCompras(){
-
+        return this.logCompras
     }
 }

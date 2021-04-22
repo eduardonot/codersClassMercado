@@ -49,6 +49,7 @@ module.exports = class Compras{
     comprar(user){
         let valorCompra = 0 
         let usuario = this.getUsuario.usuariosCadastrados().find(x => x.nome == user)
+        let logAdd = this.getUsuario.logCompras
         for(var cart of this.checarCarrinho(user)){
             valorCompra += cart.valor
             if (valorCompra > usuario.dinheiro){
@@ -60,8 +61,9 @@ module.exports = class Compras{
             for(cart of this.checarCarrinho(user)){    
                 if(produtos.nome == cart.nome){
                     produtos.quantidade -= cart.quantidade
+                    logAdd.push(cart)
                 }
-            }   
+            }
         }
         return  "Compra realizada com sucesso!"
     }

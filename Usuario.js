@@ -3,17 +3,17 @@ module.exports = class Usuario{
         this.userList = []
         this.user = {}
         this.logCompras = []
-        this.dinheiro = dinheiroSubtraido
+        this.dinheiro
     }
     cadastrarUsuario(nome, email, dinheiro){
-        this.user = {nome:nome, email:email, dinheiro:dinheiro - this.dinheiro}
+        this.user = {nome:nome, email:email, dinheiro:dinheiro}
         this.userList.push(this.user)
         return this.userList
     }
     usuariosCadastrados(){
         return this.userList
     }
-    checarCompras(){
-        return this.logCompras
+    checarCompras(usuario){
+        return this.logCompras.filter(x => x.comprador == usuario)
     }
 }

@@ -2,7 +2,7 @@ var produtos = require('./Produtos')
 var usuario = require("./Usuario")
 
 module.exports = class Compras{
-    constructor(getProduto = new produtos(), getUsuario = new usuario()){
+    constructor(getProduto = produtos(), getUsuario = usuario()){
         this.getProduto = getProduto
         this.getUsuario = getUsuario
         this.item = {}
@@ -48,12 +48,14 @@ module.exports = class Compras{
     }
     comprar(user){
         let valorCompra = 0 
-        let valorDisponivel = this.getUsuario.usuariosCadastrados().find(x => x.nome == user)
+        let usuario = this.getUsuario.usuariosCadastrados().find(x => x.nome == user)
         for(let cart of this.checarCarrinho(user)){
             valorCompra += cart.valor
         }
-        if (valorCompra > valorDisponivel.dinheiro){
+        if (valorCompra > usuario.dinheiro){
             return "Você não tem saldo suficiente para esta compra."
         }
+        usuario.dinheiro - valorCompra
+        return  usuario
     }
 }

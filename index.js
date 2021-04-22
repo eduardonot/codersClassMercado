@@ -31,5 +31,8 @@ comprar.adicionarCarrinho("Thiago","teclado", 4)
 comprar.adicionarCarrinho("Thiago","gabinete", 1)
 // CHECAR CARRINHO
 console.log(comprar.checarCarrinho("Eduardo"))
+console.log(comprar.checarCarrinho("Thiago"))
 // COMPRAR
 console.log(comprar.comprar("Eduardo"))
+// MOSTRAR USUARIOS
+console.log(userAdd.usuariosCadastrados())
